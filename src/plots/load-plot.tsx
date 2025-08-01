@@ -3,6 +3,7 @@
  */
 
 
+import * as d3 from 'd3';
 import { CPULoadEventType } from '../event-types';
 import { LinePlot } from './line-plot';
 
@@ -12,6 +13,10 @@ export class CPULoadPlot extends LinePlot<CPULoadEventType> {
     }
     protected _yAccess(e: CPULoadEventType): number {
         return e.cpu_load / 10;
+    }
+
+    protected _createYScale() {
+        return d3.scaleLinear().domain([0, 100]);
     }
 
     protected _xLabel(): string | null {

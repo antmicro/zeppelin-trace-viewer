@@ -34,6 +34,10 @@ export class MemoryUsagePlot extends LinePlot<MemoryPlotData, MemoryUsagePlotPro
         return e.percentage;
     }
 
+    protected _createYScale() {
+        return d3.scaleLinear().domain([0, 100]);
+    }
+
     protected override _annotationNote(d: MemoryPlotData): { title: string; note: string; } {
         return {
             title: this.props.memoryNameFunc(d.address, false, false),
