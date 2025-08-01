@@ -23,10 +23,12 @@ export class DieTempPlot extends LinePlot<TempEventType> {
     }
 
     protected _annotationNote(d: TempEventType): { title: string; note: string; } {
+        const temp = this._yAccess(d);
+        const tempNote = temp ? `${temp.toFixed(2)}℃` : 'not provided';
         return {
             title: d.sensor,
             note: `Timestamp ${this._xAccess(d).toFixed(2)}ms\n`
-                + `Temp ${this._yAccess(d).toFixed(2)}℃\n`,
+                + `Temp ${tempNote}\n`,
         };
     }
 }
